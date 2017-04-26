@@ -4,7 +4,7 @@
 
 process.env.PATH = process.env.PATH + ':' + process.env.LAMBDA_TASK_ROOT;
 
-var slackClient = require('slack');
+var slackClient = require('weather');
 var dispatcher = require('dispatcher');
 
 // --------------- Main handler -----------------------

@@ -34,7 +34,6 @@ Set the following environment variables I recommend using direnv [https://direnv
 
 | Variable | Description |
 | -------- | ----------- |
-| TF_VAR_slack_api_key | A valid key to access the slack API |
 | AWS_SECRET | The secret for your AWS account |
 | AWS_SECRET_KEY | The secret key for your AWS account |
 
@@ -45,3 +44,27 @@ $ make deploy
 ```
 
 The function will be deployed to `us-east-1` virginia which is currently the only region which supports Lex.
+
+## Example Test Event for AWS Lambda
+
+```json
+{
+  "currentIntent": {
+    "slots": {
+      "Location": "London"
+    },
+    "name": "WeatherLex",
+    "confirmationStatus": "None"
+  },
+  "bot": {
+    "alias": "$LATEST",
+    "version": "$LATEST",
+    "name": "WeatherLex"
+  },
+  "userId": "John",
+  "invocationSource": "DialogCodeHook",
+  "outputDialogMode": "Text",
+  "messageVersion": "1.0",
+  "sessionAttributes": {}
+}
+

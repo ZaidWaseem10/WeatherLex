@@ -1,7 +1,7 @@
-namespace = "slackbot-challenge"
+namespace = "weather-lex"
 
-lambda_function_name = "slackbot"
+lambda_function_name = "weather"
 
-s3_bucket_name = "io-hashicorp-slackbot"
+s3_bucket_name = "weather-lex"
 
 aws_region = "us-east-1"

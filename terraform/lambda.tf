@@ -46,10 +46,4 @@ resource "aws_lambda_function" "default" {
   handler          = "index.handler"
   s3_key           = "${aws_s3_bucket_object.default.id}"
   source_code_hash = "${data.archive_file.lambdazip.output_md5}"
-
-  environment = {
-    variables = {
-      SLACK_API_KEY = "${var.slack_api_key}"
-    }
-  }
 }
