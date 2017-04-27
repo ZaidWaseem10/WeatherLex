@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "default" {
 
 resource "aws_s3_bucket_object" "default" {
   bucket = "${aws_s3_bucket.default.bucket}"
-  key    = "slackbot"
+  key    = "weather-lex"
   source = "${path.module}/../lambda.zip"
   etag   = "${data.archive_file.lambdazip.output_md5}"
 }

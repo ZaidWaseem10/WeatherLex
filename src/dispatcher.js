@@ -84,24 +84,31 @@ function buildValidationResult(isValid, violatedSlot, messageContent) {
 /**
  * Called when the user specifies an intent for this skill.
  */
-exports.dispatch = function(intentRequest, slackClient, callback) {
+exports.dispatch = function(intentRequest, weatherClient, callback) {
   console.log(`dispatch userId=${intentRequest.userId}, intent=${intentRequest.currentIntent.name}`);
 
   const name = intentRequest.currentIntent.name;
 
-  if(name == 'WhatTimezone') {
-     const user = intentRequest.currentIntent.slots.User;
+  if(name == 'WeatherLex') {
+     const location = intentRequest.currentIntent.slots.Location;
 
-     slackClient.getUserDetails(user, (ret) => {
+     weatherClient.getWeather(location, (ret) => {
+      /* returns
+       { temperature: { value: '44', units: 'F' },
+        wind: { value: '14', units: 'mph' },
+        windChill: { value: '39', units: 'F' },
+        condition: 'Scattered Showers' }      *
+       */
+
       var message = { contentType: 'PlainText', content: '' };
       var outcome = 'Failed';
       
       if (ret.err === undefined) {
         outcome = 'Fulfilled';
-        if (ret.timezone !== undefined) {
-          message.content = user + ' is in ' + ret.timezone;
+        if (ret.weather !== undefined) {
+          message.content = "The current weather in " + location + " is " + ret.weather.condition + ", and the temperature is " + ret.weather.temperature.value + ret.weather.temperature.units;
         }else {
-          message.content = 'Sorry I can\'t find user: ' + user;
+          message.content = `Sorry I can\'t get the weather for ${location}`;
         }
       }else {
         console.log("error: " + ret.err);

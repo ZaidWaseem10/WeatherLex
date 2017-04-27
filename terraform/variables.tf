@@ -13,7 +13,3 @@ variable "s3_bucket_name" {
 variable "aws_region" {
   description = "Region to deploy the function to"
 }
-
-variable "slack_api_key" {
-  description = "API key for slack"
-}

@@ -11,8 +11,8 @@ build: clean
 	mkdir _build
 	cp src/index.js _build/
 	cp src/dispatcher.js _build/
-	cp src/slack.js _build/
-	npm install --prefix=_build @slack/client
+	cp src/weather.js _build/
+	npm install --prefix=_build weather-yahoo
 
 deploy: test build
 	cd terraform && terraform plan
